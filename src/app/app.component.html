@@ -1,0 +1,19 @@
+<div style="background-color: lightpink; min-height: 1080px;">
+  <mat-toolbar color="primary">
+    <!--    <mat-toolbar-row class="flex-between">-->
+    <mat-toolbar-row class="flex-between" style="box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);">
+      <span><b style="font-size: 30px">{{title}}</b></span>
+      <div>
+        <a routerLinkActive="true" style="margin-left: 50px; color: white;" [routerLink]="['/home']">Home</a>
+        <a routerLinkActive="true" style="margin-left: 25px; color: white;" [routerLink]="['/users']">Users</a>
+      </div>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="routerStyles" style="">
+    <router-outlet>
+    </router-outlet>
+  </div>
+
+</div>

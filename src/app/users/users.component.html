@@ -1,0 +1,56 @@
+<div class="column">
+    <h1 style="color: #c3235d">Sub user:</h1>
+    <p style="color: red">{{subUserMessage}}</p>
+    <div style="flex-direction: row">
+        <h4>Selected user:</h4>
+        <input #userIdInput [value]="selectedUser?.name || 'Not selected'" class="input" disabled id="userId"
+               style="background-color: #c3235d;border-color: #9d1e4f;color: white"/>
+        <button mat-flat-button color="primary" style="margin-left: 10px;width: 90px" (click)="deselectUser()">
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </div>
+    <div *ngFor="let user of users">
+        <div class="card">
+
+            <button mat-flat-button *ngIf="!selectedUser.id" color="accent" class="button"
+                    (click)="selectUser(user)">
+                <mat-icon>done_outline</mat-icon>
+            </button>
+
+            <div *ngIf="selectedUser.id && selectedUser.id != user.id ">
+                <button mat-flat-button color="accent" class="button"
+                        (click)="subscribe(selectedUser.id, user.id)"
+                        *ngIf="!selectedUser.subs.includes(user.id)">
+                    <mat-icon>favorite_outline</mat-icon>
+                </button>
+
+                <button mat-flat-button color="accent" class="button"
+                        (click)="unsubscribe(selectedUser.id, user.id)"
+                        *ngIf="selectedUser.subs.includes(user.id)">
+                    <mat-icon style="color:indianred;">favorite</mat-icon>
+                </button>
+            </div>
+
+
+            <p>Id: {{user.id}}</p>
+            <button mat-flat-button color="primary" class="dltButton" (click)="deleteUser(user.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <p>Name: {{user.name}}</p>
+            <p *ngIf="user.description">Description: {{user.description}}</p>
+            <p *ngIf="user.subs.length > 0">Subs: {{user.subs}}</p>
+        </div>
+    </div>
+</div>
+<div class="column">
+    <h1 style="color: #c3235d">Create user:</h1>
+    <p style="color: red">{{message}}</p>
+    <h4>User Name:</h4>
+    <input id="userNameToCreateInput" #userNameToCreateInput class="input" style="height: 36px"/>
+    <h4>User description:</h4>
+    <input id="userDescrToCreateInput" #userDescrToCreateInput class="input" style="height: 36px"/>
+    <button mat-flat-button color="primary"
+            (click)="createUser(userNameToCreateInput.value, userDescrToCreateInput.value)" style="margin-left: 10px">
+        Create User
+    </button>
+</div>

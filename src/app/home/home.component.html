@@ -1,0 +1,46 @@
+<div class="column">
+    <h1 style="color: #c3235d">Posts by subs of user:</h1>
+    <p style="color: red">{{postMessage}}</p>
+    <h4>User Name:</h4>
+    <div style="flex-direction: row">
+        <input #userNameInput id="userNameInput" (keydown)="onInput($event, userNameInput.value)" class="input"
+               style="height: 36px"/>
+        <button mat-flat-button color="primary" (click)="selectUser(userNameInput.value)"
+                style="margin-left: 10px;width: 90px;"><mat-icon>search</mat-icon>
+        </button>
+    </div>
+
+    <div *ngFor="let post of posts">
+        <div class="card">
+            <button mat-flat-button class="button" (click)="delete(post.postId)">
+                <mat-icon>delete</mat-icon>
+            </button>
+            <p>Id: {{post.postId}}</p>
+            <p>Author: {{post.name}}</p>
+            <p>Title: {{post.title}}</p>
+            <p>Body: {{post.body}}</p>
+            <p>Date: {{post.date | date:'dd.MM.yyyy hh:mm'}}</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="column">
+    <h1 style="color: #c3235d">Create post:</h1>
+    <p style="color: red">{{message}}</p>
+    <h4>User Name:</h4>
+    <input #userToCreateNameInput id="userToCreateNameInput" class="input" style="height: 36px"/>
+    <h4>Post Title:</h4>
+    <input #postTitleInput id="postTitleInput" class="input" style="height: 36px"/>
+    <h4>Post Body:</h4>
+    <input #postBodyInput id="postBodyInput" class="input" style="height: 36px"/>
+    <button mat-flat-button color="primary"
+            (click)="tryCreatePost(userToCreateNameInput.value, postTitleInput.value, postBodyInput.value)"
+            style="margin-left: 10px">
+        Create Post
+    </button>
+</div>
+
+
+
+
